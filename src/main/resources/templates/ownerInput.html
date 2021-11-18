@@ -4,7 +4,7 @@
 <title>Insert New Owner</title>
 </head>
 <body>
-	<form th:object="${newOwner}"th:action="@{/update/{id}(id=${newOwner.id})}" method=POST>
+	<form th:object="${newOwner}"th:action="@{/ownerUpdate/{id}(id=${newOwner.id})}" method=POST>
 		Name: <input name="name" size="20" th:field="*{name}"><br />
 		HouseNum: <input name="species" size="4"th:field="*{species}"><br /> 
 		Age: <input name="age" size="4"th:field="*{age}"><br /> 

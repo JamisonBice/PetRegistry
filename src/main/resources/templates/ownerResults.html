@@ -13,8 +13,8 @@
 				<td th:text="${currentOwner.age}" />
 				
 		
-				<td><a th:href="@{/edit/{id}(id=${currentOwner.id})}">Edit</a></td>
-				<td><a th:href="@{/delete/{id}(id=${currentOwner.id})}">Delete</a></td>
+				<td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
+				<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
 			</tr>
 		</table>
 

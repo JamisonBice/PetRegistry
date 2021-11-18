@@ -42,20 +42,20 @@ public class OwnerController {
 		return viewAllOwners(model);
 	}
 
-	@GetMapping("/edit/{id}")
+	@GetMapping("/ownerEdit/{id}")
 	public String showUpdateOwner(@PathVariable("id") long id, Model model) {
 		Owner c = repo.findById(id).orElse(null);
 		model.addAttribute("newOwner", c);
 		return "ownerInput";
 	}
 
-	@PostMapping("/update/{id}")
+	@PostMapping("/ownerUpdate/{id}")
 	public String reviseOwner(Owner c, Model model) {
 		repo.save(c);
 		return viewAllOwners(model);
 	}
 
-	@GetMapping("/delete/{id}")
+	@GetMapping("/ownerDelete/{id}")
 	public String deleteUser(@PathVariable("id") long id, Model model) {
 		Owner c = repo.findById(id).orElse(null);
 		repo.delete(c);
