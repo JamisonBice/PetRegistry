@@ -1,9 +1,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert Title</title>
+<title>View All Pets</title>
 </head>
 <body>
+	<form>
+		<table>
+			<tr th:each="currentPet : ${pets}">
+				<td th:text="${currentPet.id}" />
+				<td th:text="${currentPet.name}" />
+				<td th:text="${currentPet.species}" />
+				<td th:text="${currentPet.age}" />
+				<td th:text="${currentPet.weight}" />
+				<td th:text="${currentPet.color}" />
+				<td th:text="${currentPet.owner}" />
+				<!--Figuring out how to add owner -->
+		
+				<td><a th:href="@{/edit/{id}(id=${currentPet.id})}">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${currentPet.id})}">Delete</a></td>
+			</tr>
+		</table>
+
+
+	</form>
+	<a href="../inputPet">Add a new Pet</a>
 
 </body>
 </html>
