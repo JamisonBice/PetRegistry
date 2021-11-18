@@ -4,16 +4,48 @@
 <title>Insert New Pet</title>
 </head>
 <body>
-	<form th:object="${newPet}"th:action="@{/update/{id}(id=${newPet.id})}" method=POST>
+
+           
+ <form th:object="${newPet}"th:action="@{/update/{id}(id=${newPet.id})}" method=POST>
 		Name: <input name="name" size="20" th:field="*{name}"><br />
 		Species: <input name="species" size="10"th:field="*{species}"><br /> 
 		Age: <input name="age" size="4"th:field="*{age}"><br /> 
 		Weight: <input name="weight" size="10"th:field="*{weight}"><br /> 
 		Color: <input name="color" size="10"th:field="*{color}"><br /> 
 		<!--Figuring out how to add owner -->
-		 <input name="submit" type="submit" value="submit" />
+		<input name="submit" type="submit" value="submit" />
 	</form>
 	<a href="viewAll">View all Pets</a>
 	<a href="inputOwner">Add an Owner</a>
+
+<form method="post" onsubmit="return formValidation(this);">
+Pet: <input type ="text" name = "Pet">
+Owner: <input type = "text" name = "Owner">
+<input type = "submit" value="Add Pet">
+</form>
+
+
+<script>
+function formValidation(form){
+	if (form.Pet.value == "" || form.Owner.value == ""){
+		alert("Attention: Fields Cannot Be Empty!");
+		form.Pet.focus();
+		form.Owner.focus();
+		return false;
+	}
+	var re = /^[\w ]+$/;
+	if (!re.test(form.Pet.value)) {
+		alert("Attention: Fields Cannot Contain Invalid Characters!");
+		form.Pet.focus();
+		return false;
+	}
+	if (!re.test(form.Owner.value)) {
+		alert("Attention: Fields Cannot Contain Invalid Characters!");
+		form.Owner.focus();
+		return false;
+	} 
+return true;
+}
+</script>
 </body>
 </html>
