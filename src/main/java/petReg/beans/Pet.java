@@ -1,5 +1,7 @@
 package petReg.beans;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,6 +26,9 @@ public class Pet {
 	
 	private String name;
 	private int age;
+	private String species;
+	private String weight;
+	private String color;
 	private Owner owner;
 	/**
 	 * @param name
