@@ -2,12 +2,10 @@ package petReg.controller;
 
 import org.springframework.context.annotation.Bean;
 
+
 import org.springframework.context.annotation.Configuration;
 
-import petReg.beans.Bird;
-import petReg.beans.Cat;
-import petReg.beans.Dog;
-import petReg.beans.Fish;
+import petReg.beans.Owner;
 import petReg.beans.Pet;
 
 
@@ -25,4 +23,12 @@ public class BeanConfiguration {
 		return bean;
 
 	}
+	@Bean
+	public Owner owner() {
+		Owner bean = new Owner();
+		
+		return bean;
+
+	}
 }
+

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,17 +31,28 @@ public class Pet {
 	private String species;
 	private String weight;
 	private String color;
+	
+	@Autowired
 	private Owner owner;
+
 	/**
 	 * @param name
 	 * @param age
+	 * @param species
+	 * @param weight
+	 * @param color
 	 * @param owner
 	 */
-	public Pet(String name, int age, Owner owner) {
+	public Pet(String name, int age, String species, String weight, String color, Owner owner) {
 		this.name = name;
 		this.age = age;
+		this.species = species;
+		this.weight = weight;
+		this.color = color;
 		this.owner = owner;
 	}
+	
+	
 	
 	
 

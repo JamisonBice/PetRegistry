@@ -7,9 +7,10 @@ package petReg.repository;
  */
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import petReg.beans.Pet;
+
+import petReg.beans.Owner;
 
 @Repository
-public interface PetRepository extends JpaRepository<Pet, Long> {
+public interface OwnerRepository extends JpaRepository<Owner, Long> {
 }
 
