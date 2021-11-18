@@ -17,7 +17,49 @@ import petReg.repository.PetRepository;
 @Controller
 public class PetController {
 	
-	//Can just copy and paste from week 10
-	
+	@Autowired
+	PetRepository repo;
+
+	@GetMapping({ "/", "viewAll" })
+	public String viewAllPets(Model model) {
+		if (repo.findAll().isEmpty()) {
+			return addNewPet(model);
+		}
+		model.addAttribute("pets", repo.findAll());
+		return "ownerResults";
+	}
+
+	@GetMapping("/inputPet")
+	public String addNewPet(Model model) {
+		Pet c = new Pet();
+		model.addAttribute("newPet", c);
+		return "ownerInput";
+	}
+
+	@PostMapping("/inputPet")
+	public String addNewPet(@ModelAttribute Pet c, Model model) {
+		repo.save(c);
+		return viewAllPets(model);
+	}
+
+	@GetMapping("/edit/{id}")
+	public String showUpdatePet(@PathVariable("id") long id, Model model) {
+		Pet c = repo.findById(id).orElse(null);
+		model.addAttribute("newPet", c);
+		return "ownerInput";
+	}
+
+	@PostMapping("/update/{id}")
+	public String revisePet(Pet c, Model model) {
+		repo.save(c);
+		return viewAllPets(model);
+	}
+
+	@GetMapping("/delete/{id}")
+	public String deleteUser(@PathVariable("id") long id, Model model) {
+		Pet c = repo.findById(id).orElse(null);
+		repo.delete(c);
+		return viewAllPets(model);
+	}	
 }
 
