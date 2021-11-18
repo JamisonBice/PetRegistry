@@ -4,6 +4,35 @@
 <title>Pick an Animal to add</title>
 </head>
 <body>
-	
+
+<form method="post" onsubmit="return formValidation(this);">
+
+</form>
+
+
+<script>
+function formValidation(form){
+	if (form.Pet.value == "" || form.Owner.value == ""){
+		alert("Attention: Fields Cannot Be Empty!");
+		form.Pet.focus();
+		form.Owner.focus();
+		return false;
+	}
+	var re = /^[\w ]+$/;
+	if (!re.test(form.Pet.value)) {
+		alert("Attention: Fields Cannot Contain Invalid Characters!");
+		form.Pet.focus();
+		return false;
+	}
+	if (!re.test(form.Owner.value)) {
+		alert("Attention: Fields Cannot Contain Invalid Characters!");
+		form.Owner.focus();
+		return false;
+	} 
+return true;
+}
+</script>
+
+
 </body>
 </html>
