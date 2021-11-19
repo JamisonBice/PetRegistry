@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import petReg.beans.Owner;
 import petReg.repository.OwnerRepository;
@@ -16,11 +18,13 @@ import petReg.repository.OwnerRepository;
  * @author Jamison Bice - jdbice CIS175 - Fall 2021 Sep 4, 2021
  */
 @Controller
+//@RequestMapping("owner")
 public class OwnerController {
+	
 	@Autowired
 	OwnerRepository repo;
 
-	@GetMapping({ "/", "viewAllOwners" })
+	@GetMapping({ "-", "viewAllOwners" })
 	public String viewAllOwners(Model model) {
 		if (repo.findAll().isEmpty()) {
 			return addNewOwner(model);
