@@ -13,8 +13,12 @@
 				<td text="${currentOwner.age}" />
 				
 		
+
+				
+			<!--	<td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td> -->
 				<td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
 				<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
+
 			</tr>
 		</table>
 

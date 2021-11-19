@@ -23,46 +23,49 @@ public class PetController {
 	@Autowired
 	PetRepository repo;
 
-	@GetMapping({ "/", "viewAll" })
+	@GetMapping({ "/", "viewAllPets" })
 	public String viewAllPets(Model model) {
 		if (repo.findAll().isEmpty()) {
 			return addNewPet(model);
 		}
 		model.addAttribute("pets", repo.findAll());
+		return "petResults";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String deletePet(@PathVariable("id") long id, Model model) {
+		Pet p = repo.findById(id).orElse(null);
+		repo.delete(p);
 		return "results";
+
 	}
 
 	@GetMapping("/inputPet")
 	public String addNewPet(Model model) {
-		Pet c = new Pet();
-		model.addAttribute("newPet", c);
+		Pet p = new Pet();
+		model.addAttribute("newPet", p);
 		return "input";
+
 	}
 
 	@PostMapping("/inputPet")
-	public String addNewPet(@ModelAttribute Pet c, Model model) {
-		repo.save(c);
+	public String addNewPet(@ModelAttribute Pet p, Model model) {
+		repo.save(p);
 		return viewAllPets(model);
 	}
 
 	@GetMapping("/edit/{id}")
 	public String showUpdatePet(@PathVariable("id") long id, Model model) {
-		Pet c = repo.findById(id).orElse(null);
-		model.addAttribute("newPet", c);
+		Pet p = repo.findById(id).orElse(null);
+		model.addAttribute("newPet", p);
 		return "input";
 	}
 
 	@PostMapping("/update/{id}")
-	public String revisePet(Pet c, Model model) {
-		repo.save(c);
+	public String revisePet(Pet p, Model model) {
+		repo.save(p);
 		return viewAllPets(model);
 	}
-
-	@GetMapping("/delete/{id}")
-	public String deleteUser(@PathVariable("id") long id, Model model) {
-		Pet c = repo.findById(id).orElse(null);
-		repo.delete(c);
-		return viewAllPets(model);
-	}	
 }
+
 

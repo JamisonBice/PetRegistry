@@ -19,7 +19,6 @@ public class BeanConfiguration {
 	@Bean
 	public Pet pet() {
 		Pet bean = new Pet();
-		
 		return bean;
 
 	}
