@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import petReg.beans.Pet;
 import petReg.repository.PetRepository;
@@ -23,13 +21,13 @@ public class PetController {
 	@Autowired
 	PetRepository repo;
 
-	@GetMapping({ "/", "viewAllPets" })
+	@GetMapping({ "/", "viewAll" })
 	public String viewAllPets(Model model) {
 		if (repo.findAll().isEmpty()) {
 			return addNewPet(model);
 		}
 		model.addAttribute("pets", repo.findAll());
-		return "petResults";
+		return "results";
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -65,6 +63,13 @@ public class PetController {
 	public String revisePet(Pet p, Model model) {
 		repo.save(p);
 		return viewAllPets(model);
+	}
+	
+	@GetMapping("/search/{id}")
+	public String searchPet(@PathVariable("id") long id, Model model) {
+		Pet p = repo.findById(id).orElse(null);
+		model.addAttribute("newPet", p);
+		return "results";
 	}
 }
 

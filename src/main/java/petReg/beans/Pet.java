@@ -1,12 +1,8 @@
 package petReg.beans;
 
-import java.util.ArrayList;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
