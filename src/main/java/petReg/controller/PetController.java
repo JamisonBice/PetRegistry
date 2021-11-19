@@ -23,13 +23,13 @@ public class PetController {
 	@Autowired
 	PetRepository repo;
 
-	@GetMapping({ "/", "viewAllPets" })
+	@GetMapping({ "/", "viewAll" })
 	public String viewAllPets(Model model) {
 		if (repo.findAll().isEmpty()) {
 			return addNewPet(model);
 		}
 		model.addAttribute("pets", repo.findAll());
-		return "petResults";
+		return "results";
 	}
 	
 	@GetMapping("/delete/{id}")
