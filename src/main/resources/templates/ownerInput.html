@@ -4,14 +4,45 @@
 <title>Insert New Owner</title>
 </head>
 <body>
-	<form th:object="${newOwner}"th:action="@{/update/{id}(id=${newOwner.id})}" method=POST>
+	<form th:object="${newOwner}"th:action="@{/update/{id}(id=${newOwner.id})}" method=POST onsubmit="return formValidation(this);">
 		Name: <input name="name" size="20" th:field="*{name}"><br />
-		HouseNum: <input name="species" size="4"th:field="*{species}"><br /> 
+		HouseNum: <input name="houseNum" size="4"th:field="houseNum"><br /> 
 		Age: <input name="age" size="4"th:field="*{age}"><br /> 
-		
 		 <input name="submit" type="submit" value="submit" />
 	</form>
 	<a href="viewAllOwners">View all Owners</a>
 	<a href="inputPet">Add an Pet</a>
+	
+	
+	<script>
+function formValidation(form){
+	if (form.name.value == "" || form.houseNum.value == "" || form.age.value == ""){
+		alert("Attention: Fields Cannot Be Empty!");
+		form.name.focus();
+		form.houseNum.focus();
+		form.age.focus();
+
+		return false;
+	}
+	var re = /^[\w ]+$/;
+	if (!re.test(form.name.value)) {
+		alert("Attention: Fields Cannot Contain Invalid Characters!");
+		form.name.focus();
+		return false;
+	}
+	if (!re.test(form.houseNum.value)) {
+		alert("Attention: Fields Cannot Contain Invalid Characters!");
+		form.houseNum.focus();
+		return false;
+	} 
+	if (!re.test(form.age.value)) {
+		alert("Attention: Fields Cannot Contain Invalid Characters!");
+		form.age.focus();
+		return false;
+	} 
+return true;
+}
+</script>
+
 </body>
 </html>
