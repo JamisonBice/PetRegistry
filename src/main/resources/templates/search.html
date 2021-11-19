@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Search</title>
 </head>
 <body>
-
+<form th:action="viewAll" method=POST>
+		<input type="radio" id="age" name="age">
+		<label for="age">Age</label><br />
+		<input type="radio" id="owner" name="owner">
+		<label for="owner">Owner</label><br />
+		<input type="radio" id="species" name="species">
+		<label for="species">Species</label><br />
+		<input type="radio" id="animalname" name="animalname">
+		<label for="animalname">Pet Name</label><br />
+		<input name="submit" type="submit" value="W.I.P (Does Not currently lead anywhere)" />
+	</form>
+	<a href="/viewAll">View all Pets</a>
+	<a href="/inputOwner">Add an Owner</a>
 </body>
 </html>
