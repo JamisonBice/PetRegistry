@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -28,31 +29,38 @@ public class PetController {
 		return "petResults";
 	}
 	
-	@GetMapping("/inputPet")
-	public String addNewPet(Model model) {
-		Pet p = new Pet();
-		model.addAttribute("newPet", p);
-		return "petInput";
-	}
-	
-	@GetMapping("/edit/{id}")
-	public String showUpdatePet(@PathVariable("id") long id, Model model) {
-		Pet p = repo.findById(id).orElse(null);
-		model.addAttribute("newPet", p);
-		return "petInput";
-	}
-
-	@PostMapping("/update/{id}")
-	public String reviseOwner(Pet p, Model model) {
-		repo.save(p);
-		return viewAllPets(model);
-	}
-	
 	@GetMapping("/delete/{id}")
 	public String deletePet(@PathVariable("id") long id, Model model) {
 		Pet p = repo.findById(id).orElse(null);
 		repo.delete(p);
+		return "ownerResults";
+	}
+
+	@GetMapping("/inputPet")
+	public String addNewPet(Model model) {
+		Pet p = new Pet();
+		model.addAttribute("newPet", p);
+		return "ownerInput";
+	}
+
+	@PostMapping("/inputPet")
+	public String addNewPet(@ModelAttribute Pet p, Model model) {
+		repo.save(p);
 		return viewAllPets(model);
-	}	
+	}
+
+	@GetMapping("/edit/{id}")
+	public String showUpdatePet(@PathVariable("id") long id, Model model) {
+		Pet p = repo.findById(id).orElse(null);
+		model.addAttribute("newPet", p);
+		return "ownerInput";
+	}
+
+	@PostMapping("/update/{id}")
+	public String revisePet(Pet p, Model model) {
+		repo.save(p);
+		return viewAllPets(model);
+	}
 }
+
 
