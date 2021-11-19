@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import petReg.beans.Pet;
 import petReg.repository.PetRepository;
@@ -15,6 +17,7 @@ import petReg.repository.PetRepository;
  * @author Jamison Bice - jdbice CIS175 - Fall 2021 Nov 18, 2021
  */
 @Controller
+//@RequestMapping("pet")
 public class PetController {
 	
 	@Autowired
@@ -33,14 +36,16 @@ public class PetController {
 	public String deletePet(@PathVariable("id") long id, Model model) {
 		Pet p = repo.findById(id).orElse(null);
 		repo.delete(p);
-		return "ownerResults";
+		return "results";
+
 	}
 
 	@GetMapping("/inputPet")
 	public String addNewPet(Model model) {
 		Pet p = new Pet();
 		model.addAttribute("newPet", p);
-		return "ownerInput";
+		return "input";
+
 	}
 
 	@PostMapping("/inputPet")
@@ -53,7 +58,7 @@ public class PetController {
 	public String showUpdatePet(@PathVariable("id") long id, Model model) {
 		Pet p = repo.findById(id).orElse(null);
 		model.addAttribute("newPet", p);
-		return "ownerInput";
+		return "input";
 	}
 
 	@PostMapping("/update/{id}")

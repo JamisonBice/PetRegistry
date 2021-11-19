@@ -32,8 +32,8 @@ public class Pet {
 	private String weight;
 	private String color;
 	
-	@Autowired
-	private Owner owner;
+	//@Autowired
+	//private Owner owner;
 
 	/**
 	 * @param name
@@ -43,18 +43,36 @@ public class Pet {
 	 * @param color
 	 * @param owner
 	 */
+
 	
-	public Pet() {
-		super();
-	}
-	
-	public Pet(String name, int age, String species, String weight, String color, Owner owner) {
+
+	public Pet(String name, int age, String species, String weight, String color /*Owner owner */) {
+
 		this.name = name;
 		this.age = age;
 		this.species = species;
 		this.weight = weight;
 		this.color = color;
-		this.owner = owner;
+		//this.owner = owner;
+	}
+
+	/**
+	 * @param id
+	 * @param name
+	 * @param age
+	 * @param species
+	 * @param weight
+	 * @param color
+	 * @param owner
+	 */
+	public Pet(long id, String name, int age, String species, String weight, String color /*Owner owner */) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.species = species;
+		this.weight = weight;
+		this.color = color;
+		//this.owner = owner;
 	}
 	
 	

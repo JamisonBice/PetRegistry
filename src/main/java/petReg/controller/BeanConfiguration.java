@@ -24,7 +24,7 @@ public class BeanConfiguration {
 	}
 	@Bean
 	public Owner owner() {
-		Owner bean = new Owner();
+		Owner bean = new Owner("Bob", 1010, 96);
 		
 		return bean;
 

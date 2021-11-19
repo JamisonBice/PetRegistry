@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import petReg.beans.Owner;
 import petReg.repository.OwnerRepository;
@@ -16,11 +18,13 @@ import petReg.repository.OwnerRepository;
  * @author Jamison Bice - jdbice CIS175 - Fall 2021 Sep 4, 2021
  */
 @Controller
+//@RequestMapping("owner")
 public class OwnerController {
+	
 	@Autowired
 	OwnerRepository repo;
 
-	@GetMapping({ "/", "viewAllOwners" })
+	@GetMapping({ "-", "viewAllOwners" })
 	public String viewAllOwners(Model model) {
 		if (repo.findAll().isEmpty()) {
 			return addNewOwner(model);
@@ -42,20 +46,20 @@ public class OwnerController {
 		return viewAllOwners(model);
 	}
 
-	@GetMapping("/edit/{id}")
+	@GetMapping("/ownerEdit/{id}")
 	public String showUpdateOwner(@PathVariable("id") long id, Model model) {
 		Owner c = repo.findById(id).orElse(null);
 		model.addAttribute("newOwner", c);
 		return "ownerInput";
 	}
 
-	@PostMapping("/update/{id}")
+	@PostMapping("/ownerUpdate/{id}")
 	public String reviseOwner(Owner c, Model model) {
 		repo.save(c);
 		return viewAllOwners(model);
 	}
 
-	@GetMapping("/delete/{id}")
+	@GetMapping("/ownerDelete/{id}")
 	public String deleteUser(@PathVariable("id") long id, Model model) {
 		Owner c = repo.findById(id).orElse(null);
 		repo.delete(c);

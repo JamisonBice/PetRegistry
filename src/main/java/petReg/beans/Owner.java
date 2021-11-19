@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
  * CIS175 - Fall 2021
  * Nov 17, 2021
  */
-@Embeddable
+//@Embeddable
 @Entity
 @Data
 @NoArgsConstructor
@@ -22,11 +22,33 @@ public class Owner {
 	
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	
 	private String name;
 	private int houseNum;
 	private int age;
+	/**
+	 * @param id
+	 * @param name
+	 * @param houseNum
+	 * @param age
+	 */
+	public Owner(int id, String name, int houseNum, int age) {
+		this.id = id;
+		this.name = name;
+		this.houseNum = houseNum;
+		this.age = age;
+	}
+	/**
+	 * @param name
+	 * @param houseNum
+	 * @param age
+	 */
+	public Owner(String name, int houseNum, int age) {
+		this.name = name;
+		this.houseNum = houseNum;
+		this.age = age;
+	}
 
 	
 }

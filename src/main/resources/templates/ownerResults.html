@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+ <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>View All Owners</title>
@@ -7,15 +7,18 @@
 	<form>
 		<table>
 			<tr th:each="currentOwner : ${owners}">
-				<td th:text="${currentOwner.id}" />
-				<td th:text="${currentOwner.name}" />
-				<td th:text="${currentOwner.housenum}" />
-				<td th:text="${currentOwner.age}" />
+				<td text="${currentOwner.id}" />
+				<td text="${currentOwner.name}" />
+				<td text="${currentOwner.housenum}" />
+				<td text="${currentOwner.age}" />
 				
 		
-				<td><a th:href="@{/edit/{id}(id=${currentOwner.id})}">Edit</a></td>
-				<td><a th:href="@{/delete/{id}(id=${currentOwner.id})}">Delete</a></td>
-				<td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td>
+
+				
+			<!--	<td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td> -->
+				<td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
+				<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
+
 			</tr>
 		</table>
 
