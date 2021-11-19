@@ -5,7 +5,7 @@
 </head>
 <body>
 
-	<form th:object="${newOwner}"th:action="@{/ownerUpdate/{id}(id=${newOwner?.id})}" method=POST onsubmit="return formValidation(this);>
+	<form th:object="${newOwner}"th:action="@{/ownerUpdate/{id}(id=${newOwner?.id})}" method=POST onsubmit="return formValidation(this)";>
 		Name: <input name="name" size="20" field="*{name}"><br />
 		HouseNum: <input name="houseNum" size="4" field="*{houseNum}"><br /> 
 		Age: <input name="age" size="4" field="*{age}"><br /> 
