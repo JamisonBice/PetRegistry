@@ -43,6 +43,11 @@ public class Pet {
 	 * @param color
 	 * @param owner
 	 */
+	
+	public Pet() {
+		super();
+	}
+	
 	public Pet(String name, int age, String species, String weight, String color, Owner owner) {
 		this.name = name;
 		this.age = age;
