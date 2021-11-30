@@ -6,10 +6,6 @@ h1 {
     text-transform: uppercase;
 }
 
-strong {
-    font-weight: 700;
-}
-
 #pets tr {
   padding-top: 12px;
   padding-bottom: 12px;

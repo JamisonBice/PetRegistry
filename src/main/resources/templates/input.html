@@ -20,7 +20,7 @@
 
 
 <!--input validation to make sure not blank or no invalid characters--> 
-<!--  
+
 
 <form method="post" onsubmit="return formValidation(this);">
 Pet: <input type ="text" name = "Pet">
@@ -37,7 +37,6 @@ function formValidation(form){
 		form.age.focus();
 		form.weight.focus();
 		form.color.focus();
-
 		return false;
 	}
 	var re = /^[\w ]+$/;
@@ -67,7 +66,8 @@ function formValidation(form){
 		return false;
 	} 
 return true;
+}
 </script>
--->
+
 </body>
 </html>
