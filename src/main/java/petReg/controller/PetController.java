@@ -69,7 +69,7 @@ public class PetController {
 	public String searchPet(@PathVariable("id") long id, Model model) {
 		Pet p = repo.findById(id).orElse(null);
 		model.addAttribute("newPet", p);
-		return "results";
+		return "search";
 	}
 }
 

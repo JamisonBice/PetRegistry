@@ -20,13 +20,28 @@
 
 
 <!--input validation to make sure not blank or no invalid characters--> 
-<!--  
+
 
 <form method="post" onsubmit="return formValidation(this);">
 Pet: <input type ="text" name = "Pet">
 Owner: <input type = "text" name = "Owner">
 <input type = "submit" value="Add Pet">
 </form>
+
+
+<form th:action="@{/}">
+    Search By House Number: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+    &nbsp;
+    <input type="submit" value="Search" />
+    &nbsp;
+    <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+</form>
+
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/}]]";
+    }
+</script>
 
 <script>
 function formValidation(form){
@@ -37,7 +52,6 @@ function formValidation(form){
 		form.age.focus();
 		form.weight.focus();
 		form.color.focus();
-
 		return false;
 	}
 	var re = /^[\w ]+$/;
@@ -67,7 +81,8 @@ function formValidation(form){
 		return false;
 	} 
 return true;
+}
 </script>
--->
+
 </body>
 </html>
