@@ -1,30 +1,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
+<link th:href="@{/static/style.css}" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>View All Pets</title>
+
 </head>
+
+
 <body>
+
+<h1> Pet Registry </h1>
 	<form>
-		<table>
-			<tr th:each="currentPet : ${pets}">
-				<td th:text="${currentPet.id}" />
-				<td th:text="${currentPet.name}" />
-				<td th:text="${currentPet.species}" />
-				<td th:text="${currentPet.age}" />
-				<td th:text="${currentPet.weight}" />
-				<td th:text="${currentPet.color}" />
-				<!--Figuring out how to add owner -->
+		<table id="pets">
+		<tr th:each="currentPet : ${pets}">
+			<td th:text="${currentPet.id}" />
+			<td th:text="${currentPet.name}" />
+			<td th:text="${currentPet.species}" />
+			<td th:text="${currentPet.age}" />
+			<td th:text="${currentPet.weight}" />
+			<td th:text="${currentPet.color}" />
+			<!--Figuring out how to add owner -->
 		
-				<td><a th:href="@{/edit/{id}(id=${currentPet.id})}">Edit</a></td>
-				<td><a th:href="@{/delete/{id}(id=${currentPet.id})}">Delete</a></td>
+
+			<td><a th:href="@{/edit/{id}(id=${currentPet.id})}">Edit</a></td>
+			<td><a th:href="@{/delete/{id}(id=${currentPet.id})}">Delete</a></td>
+
 				
-			</tr>
+		</tr>
 		</table>
-
-
 	</form>
-	<a href="../inputPet">Add a new Pet</a>
+	
+	<a href="../inputPet">Add a New Pet</a>
 	<a href="/search">Search</a>
 
+
 </body>
+
 </html>

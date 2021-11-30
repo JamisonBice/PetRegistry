@@ -1,0 +1,26 @@
+@charset "ISO-8859-1";
+
+h1 {
+    font-family: sans-serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+
+#pets tr {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: grey;
+  color: white;
+}
+
+#pets td, #pets th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#pets {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
