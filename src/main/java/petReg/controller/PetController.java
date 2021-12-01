@@ -65,10 +65,9 @@ public class PetController {
 		return viewAllPets(model);
 	}
 	
-	@GetMapping("/search/{id}")
-	public String searchPet(@PathVariable("id") long id, Model model) {
-		Pet p = repo.findById(id).orElse(null);
-		model.addAttribute("newPet", p);
+	@GetMapping("/search")
+	public String searchPet(Model model) {
+		model.addAttribute("pets", repo.findAll());
 		return "search";
 	}
 }

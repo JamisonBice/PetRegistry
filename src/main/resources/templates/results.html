@@ -22,16 +22,17 @@
 			<td th:text="${currentPet.color}" />
 			<!--Figuring out how to add owner -->
 		
+
 			<td><a th:href="@{/edit/{id}(id=${currentPet.id})}">Edit</a></td>
 			<td><a th:href="@{/delete/{id}(id=${currentPet.id})}">Delete</a></td>
-			<td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td>
+
 				
 		</tr>
 		</table>
 	</form>
 	
 	<a href="../inputPet">Add a New Pet</a>
-
+	<a href="/search">Search</a>
 
 
 </body>
