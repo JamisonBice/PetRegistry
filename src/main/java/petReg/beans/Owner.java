@@ -49,12 +49,7 @@ public class Owner {
 		this.houseNum = houseNum;
 		this.age = age;
 	}
-	/**
-	 * 
-	 */
-	public Owner() {
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	
 }
