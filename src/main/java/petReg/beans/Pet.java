@@ -70,12 +70,7 @@ public class Pet {
 		this.color = color;
 		//this.owner = owner;
 	}
-
-	/**
-	 * 
-	 *
-	public Pet() {
-		// TODO Auto-generated constructor stub
-	}
-	*/
 }
+
+
+

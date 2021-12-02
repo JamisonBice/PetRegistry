@@ -1,6 +1,10 @@
 package petReg.controller;
 
-import org.springframework.beans.factory.annotation.Autowired; 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,8 +12,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+
 import petReg.beans.Owner;
 import petReg.repository.OwnerRepository;
+import petReg.service.OwnerService;
 
 /**
  * @author Jamison Bice - jdbice CIS175 - Fall 2021 Sep 4, 2021
@@ -17,9 +28,12 @@ import petReg.repository.OwnerRepository;
 @Controller
 //@RequestMapping("owner")
 public class OwnerController {
-	
+
 	@Autowired
 	OwnerRepository repo;
+
+	@Autowired
+	private OwnerService service;
 
 	@GetMapping({ "-", "viewAllOwners" })
 	public String viewAllOwners(Model model) {
@@ -62,7 +76,16 @@ public class OwnerController {
 		repo.delete(c);
 		return viewAllOwners(model);
 	}
-	
-	
-}
 
+	@RequestMapping(path = { "/", "/search" })
+	public String home(Owner shop, Model model, String keyword) {
+		if (keyword != null) {
+			List<Owner> list = service.getByKeyword(keyword);
+			model.addAttribute("list", list);
+		} else {
+			List<Owner> list = service.getAllOwners();
+			model.addAttribute("list", list);
+		}
+		return "ownerInput";
+	}
+}
