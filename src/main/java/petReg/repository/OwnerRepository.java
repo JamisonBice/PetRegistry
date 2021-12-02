@@ -17,6 +17,6 @@ import petReg.beans.Owner;
 @Repository
 public interface OwnerRepository extends JpaRepository<Owner, Long> {
 
-	@Query(value = "select * from owner o where o.name like %:keyword% or o.house_num like %:keyword% or o.age like %:keyword%", nativeQuery = true)
+	@Query(value = "select * from owner o where o.name like %:keyword% or o.house_num like %:keyword% or o.age like %:keyword%" , nativeQuery = true)
 	List<Owner> findByKeyword(@Param("keyword") String keyword);
 }

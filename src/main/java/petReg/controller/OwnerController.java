@@ -77,15 +77,15 @@ public class OwnerController {
 		return viewAllOwners(model);
 	}
 
-	@RequestMapping(path = { "/", "/search" })
-	public String home(Owner shop, Model model, String keyword) {
+	@RequestMapping(path = { "-", "/searchOwner" })
+	public String home(Owner owner, Model model, String keyword) {
 		if (keyword != null) {
 			List<Owner> list = service.getByKeyword(keyword);
-			model.addAttribute("list", list);
+			model.addAttribute("newOwner", list);
 		} else {
 			List<Owner> list = service.getAllOwners();
-			model.addAttribute("list", list);
+			model.addAttribute("newOwner", list);
 		}
-		return "ownerInput";
+		return "ownerResults";
 	}
 }
