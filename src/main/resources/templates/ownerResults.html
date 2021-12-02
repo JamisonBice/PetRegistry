@@ -4,18 +4,37 @@
 <title>View All Owners</title>
 </head>
 <body>
-	<form>
-		<table>
-			<tr th:each="currentOwner : ${owners}">
-				<td text="${currentOwner.id}" />
-				<td text="${currentOwner.name}" />
-				<td text="${currentOwner.housenum}" />
-				<td text="${currentOwner.age}" />
-				
-		
-
-				
-			<!--	<td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td> -->
+	<div class="container mt-5">
+<h2 align="center">Search in Thymeleaf Template</h2>
+  <form th:action="@{/search}" method="get">
+  <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Owner Name & Shop Type" size="50" >
+  <button type="submit" class="btn btn-info" >Search</button>
+  <button type="submit" class="btn btn-info" >Reset</button>
+  </form>
+  <table class="table table-bordered table-sm mt-2">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Owner Name</th>
+        <th>House Number</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="l : ${list}" th:field="${l}">
+        <td th:text="${lStat.index+1}"></td>
+        <td th:text="${l.name}"></td>
+        <td th:text="${l.houseNum}"></td>
+        <td th:text="${l.age}"></td>
+        <td>
+        <a th:href="@{/ownerEdit/{id}(id=${l.id})}" ><i class="fa fa-edit" ></i></a>
+        <a th:href="@{/ownerDelete/{id}(id=${l.id})}" ><i class="fa fa-remove"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+			<!--	<td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td> 
 				<td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
 				<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
 
@@ -23,7 +42,7 @@
 		</table>
 
 
-	</form>
+	</form> -->
 	<a href="../inputOwner">Add a new Owner</a>
 
 </body>
