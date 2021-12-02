@@ -1,14 +1,65 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<style>
+body {background-color: ghostwhite;}
+h1   {color: steelblue;
+  font-family: verdana;
+  font-size: 250%;}
+p    {color: yellowgreen;
+  font-family: courier-bold;
+  font-size: 160%;
+  margin: 1px 1px 1px 1px;}
+input[type=submit]{
+  background-color: lightgreen; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+input[type=submit]:hover{
+  background-color: green; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+a:link, a:visited {
+  background-color: skyblue;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: steelblue;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert New Owner</title>
 </head>
 <body>
-
+<h1>Insert a new Owner</h1>
 	<form th:object="${newOwner}"th:action="@{/ownerUpdate/{id}(id=${newOwner?.id})}" method=POST onsubmit="return formValidation(this)">
-		Name: <input name="name" size="20" th:field="*{name}"><br />
-		HouseNum: <input name="houseNum" size="4" th:field="*{houseNum}"><br /> 
-		Age: <input name="age" size="4" th:field="*{age}"><br /> 
+		<p>Name:</p> <input name="name" size="20" th:field="*{name}"><br />
+		<p>HouseNum:</p><input name="houseNum" size="4" th:field="*{houseNum}"><br /> 
+		<p>Age:</p> <input name="age" size="4" th:field="*{age}"><br /> 
 		
 
 		 <input name="submit" type="submit" value="submit" />

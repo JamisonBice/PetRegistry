@@ -1,49 +1,133 @@
  <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<style>
+body {background-color: ghostwhite;}
+h1   {color: steelblue;
+  font-family: verdana;
+  font-size: 250%;}
+<!-- table,th,td {color: yellowgreen;
+  font-family: courier;
+  font-size: 130%;
+  border: 1px yellowgreen;
+  margin: 1px 1px 1px 1px;} -->
+#owners {
+  font-size: 130%;
+  font-family: courier;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+#owners td, #owners th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-family: courier-bold;
+  font-size: 130%;
+}
+
+#owners tr:nth-child(even){background-color: #f2f2f2;}
+
+#owners tr:hover {background-color: #ddd;}
+
+#owners th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+p {color: yellowgreen;
+  font-family: courier;
+  font-size: 160%;
+  margin: 1px 1px 1px 1px;}
+input[type=submit]{
+  background-color: lightgreen; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+input[type=submit]:hover{
+  background-color: green; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+a:link, a:visited {
+  background-color: skyblue;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: steelblue;
+}
+</style>
 <meta charset="UTF-8">
 <title>View All Owners</title>
 </head>
 <body>
-
-	<div class="container mt-5">
-<h2 align="center">Search in Thymeleaf Template</h2>
-  <form th:action="@{/search}" method="get">
-  <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Owner Name & Shop Type" size="50" >
+<div class="container mt-5">
+<h1 align="center">Search Owners</h1>
+  <form th:action="@{/searchOwner}" method="get">
+  <input type="text" name="keyword" th:value="${keyword}"  placeholder="DOESn't WORk dont click " size="50" >
   <button type="submit" class="btn btn-info" >Search</button>
   <button type="submit" class="btn btn-info" >Reset</button>
   </form>
-  <table class="table table-bordered table-sm mt-2">
+
+   
+  <table class="table table-bordered table-sm mt-2" id="owners">
     <thead>
       <tr>
         <th>Id</th>
         <th>Owner Name</th>
         <th>House Number</th>
-        <th>Age</th>
+        <th>Owner Age</th>
+      
       </tr>
     </thead>
     <tbody>
-      <tr th:each="l : ${list}" th:field="${l}">
-        <td th:text="${lStat.index+1}"></td>
-        <td th:text="${l.name}"></td>
-        <td th:text="${l.houseNum}"></td>
-        <td th:text="${l.age}"></td>
+      
+			<tr th:each="currentOwner : ${owners}">
+				<td th:text="${currentOwner.id}" />
+				<td th:text="${currentOwner.name}" />
+				<td th:text="${currentOwner.houseNum}" />
+				<td th:text="${currentOwner.age}" />
         <td>
-        <a th:href="@{/ownerEdit/{id}(id=${l.id})}" ><i class="fa fa-edit" ></i></a>
-        <a th:href="@{/ownerDelete/{id}(id=${l.id})}" ><i class="fa fa-remove"></i></a>
-        </td>
+        <td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
+		<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
       </tr>
     </tbody>
   </table>
 </div>
-        
-			<!--	<form>
+
+        <!--  
+		<form>
 		<table>
 			<tr th:each="currentOwner : ${owners}">
 				<td th:text="${currentOwner.id}" />
 				<td th:text="${currentOwner.name}" />
 				<td th:text="${currentOwner.houseNum}" />
 				<td th:text="${currentOwner.age}" />
-	<td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td> 
+	  <td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td>  
 				<td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
 				<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
 
@@ -51,7 +135,7 @@
 		</table>
 
 
-	</form> -->
+	</form>  -->
 	<a href="../inputOwner">Add a new Owner</a>
 
 </body>
