@@ -4,6 +4,7 @@
 <title>View All Owners</title>
 </head>
 <body>
+
 	<div class="container mt-5">
 <h2 align="center">Search in Thymeleaf Template</h2>
   <form th:action="@{/search}" method="get">
@@ -34,7 +35,15 @@
     </tbody>
   </table>
 </div>
-			<!--	<td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td> 
+        
+			<!--	<form>
+		<table>
+			<tr th:each="currentOwner : ${owners}">
+				<td th:text="${currentOwner.id}" />
+				<td th:text="${currentOwner.name}" />
+				<td th:text="${currentOwner.houseNum}" />
+				<td th:text="${currentOwner.age}" />
+	<td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td> 
 				<td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
 				<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
 

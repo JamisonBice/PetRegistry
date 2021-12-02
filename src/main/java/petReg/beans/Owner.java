@@ -49,7 +49,6 @@ public class Owner {
 		this.houseNum = houseNum;
 		this.age = age;
 	}
-	
 
 	
 }
