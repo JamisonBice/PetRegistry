@@ -58,9 +58,9 @@ a:hover, a:active {
 <body>
 <h1>Insert a new Owner</h1>
 	<form th:object="${newOwner}"th:action="@{/ownerUpdate/{id}(id=${newOwner?.id})}" method=POST onsubmit="return formValidation(this)">
-		<p>Name:</p> <input name="name" size="20" th:field="*{name}"><br />
-		<p>HouseNum:</p><input name="houseNum" size="4" th:field="*{houseNum}"><br /> 
-		<p>Age:</p> <input name="age" size="4" th:field="*{age}"><br /> 
+		<p>Name:</p> <input name="name" size="20" th:field="*{name}" ><br />
+		<p>HouseNum:</p><input name="houseNum" size="4" th:field="*{houseNum}" ><br /> 
+		<p>Age:</p> <input name="age" size="4" th:field="*{age}" ><br /> 
 		
 
 		 <input name="submit" type="submit" value="submit" />

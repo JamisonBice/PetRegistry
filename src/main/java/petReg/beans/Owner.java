@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Owner {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private int id;
 	
 	private String name;
