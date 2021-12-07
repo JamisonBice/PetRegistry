@@ -1,5 +1,8 @@
- <html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
 <head>
+<meta charset="UTF-8">
+
 <style>
 body {background-color: ghostwhite;}
 h1   {color: steelblue;
@@ -39,7 +42,7 @@ p {color: yellowgreen;
   font-family: courier;
   font-size: 160%;
   margin: 1px 1px 1px 1px;}
-input[type=submit]{
+input[type=submit], button {
   background-color: lightgreen; /* Green */
   border: none;
   color: white;
@@ -53,7 +56,24 @@ input[type=submit]{
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
 }
-input[type=submit]:hover{
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 20px;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 30%;
+}
+input[type=submit]:hover , button:hover{
   background-color: green; /* Green */
   border: none;
   color: white;
@@ -81,55 +101,42 @@ a:hover, a:active {
   background-color: steelblue;
 }
 </style>
-<meta charset="UTF-8">
-<title>View All Owners</title>
+<title>SEARCH</title>
 </head>
 <body>
-<h1 align="center">All Owners</h1>
-
+<div class="container mt-5">
+<h1 align="center">Search Owners</h1>
+  <form th:action="@{/ownerSearch}" method="get">
+  <input type="text" name="keyword" th:value="${keyword}"  placeholder="Search        Owner Name & HouseNum & Age" size="50" >
+  <button type="submit" class="btn btn-info" >Search</button>
+  <button type="submit" class="btn btn-info" >Reset</button>
+  </form>
   <table class="table table-bordered table-sm mt-2" id="owners">
     <thead>
       <tr>
         <th>Id</th>
         <th>Owner Name</th>
         <th>House Number</th>
-        <th>Owner Age</th>
+        <th>Age</th>
       
       </tr>
     </thead>
     <tbody>
-      
-			<tr th:each="currentOwner : ${owners}">
-				<td th:text="${currentOwner.id}" />
-				<td th:text="${currentOwner.name}" />
-				<td th:text="${currentOwner.houseNum}" />
-				<td th:text="${currentOwner.age}" />
+      <tr th:each="l : ${list}" th:field="${l}">
+        <td th:text="${lStat.index+1}"></td>
+        <td th:text="${l.name}"></td>
+        <td th:text="${l.houseNum}"></td>
+        <td th:text="${l.age}"></td>
+        
         <td>
-        <td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
-		<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
+       
+        </td>
       </tr>
     </tbody>
   </table>
-
-        <!--  
-		<form>
-		<table>
-			<tr th:each="currentOwner : ${owners}">
-				<td th:text="${currentOwner.id}" />
-				<td th:text="${currentOwner.name}" />
-				<td th:text="${currentOwner.houseNum}" />
-				<td th:text="${currentOwner.age}" />
-	  <td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td>  
-				<td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
-				<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
-
-			</tr>
-		</table>
-
-
-	</form>  -->
-	<a href="../inputOwner">Add a new Owner</a>
-	<a href="/ownerSearch">Search Owners</a>
-
+</div>
+<a href="../inputOwner">Add a new Owner</a>
+<a href="/viewAllOwners">View all Owners</a>
+<a href="/inputPet">Add an Pet</a>
 </body>
 </html>
