@@ -1,5 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
+<link th:href="@{/static/style.css}" rel="stylesheet" />
+<meta charset="UTF-8">
+<title>View All Pets</title>
 <style>
 body {background-color: ghostwhite;}
 h1   {color: steelblue;
@@ -51,10 +55,6 @@ a:hover, a:active {
   background-color: steelblue;
 }
 </style>
-<link th:href="@{/static/style.css}" rel="stylesheet" />
-<meta charset="UTF-8">
-<title>View All Pets</title>
-
 </head>
 
 
@@ -70,7 +70,6 @@ a:hover, a:active {
 			<td th:text="${currentPet.age}" />
 			<td th:text="${currentPet.weight}" />
 			<td th:text="${currentPet.color}" />
-			<!--Figuring out how to add owner -->
 		
 
 			<td><a th:href="@{/edit/{id}(id=${currentPet.id})}">Edit</a></td>
