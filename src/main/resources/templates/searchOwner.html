@@ -55,6 +55,23 @@ input[type=submit], button {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
 }
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 20px;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 30%;
+}
 input[type=submit]:hover , button:hover{
   background-color: green; /* Green */
   border: none;
@@ -89,7 +106,7 @@ a:hover, a:active {
 <div class="container mt-5">
 <h1 align="center">Search Owners</h1>
   <form th:action="@{/ownerSearch}" method="get">
-  <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Owner Name & HouseNum & Age" size="50" >
+  <input type="text" name="keyword" th:value="${keyword}"  placeholder="Search        Owner Name & HouseNum & Age" size="50" >
   <button type="submit" class="btn btn-info" >Search</button>
   <button type="submit" class="btn btn-info" >Reset</button>
   </form>
@@ -117,6 +134,7 @@ a:hover, a:active {
     </tbody>
   </table>
 </div>
+<a href="../inputOwner">Add a new Owner</a>
 <a href="/viewAllOwners">View all Owners</a>
 <a href="/inputPet">Add an Pet</a>
 </body>
