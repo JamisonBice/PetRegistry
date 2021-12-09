@@ -1,15 +1,15 @@
 package petReg.repository;
 
-/**
- * @author Jamison Bice - jdbice
- * CIS175 - Fall 2021
- * Nov 17, 2021
- */
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
+
 import petReg.beans.Pet;
 
-@Repository
 public interface PetRepository extends JpaRepository<Pet, Long> {
+	
+	@Query("SELECT p FROM Pet p WHERE CONCAT(p.name, ' ', p.species, ' ', p.weight, ' ', p.color, ' ', p.age) LIKE %?1%")
+	public List<Pet> search(String keyword); 
 }
 

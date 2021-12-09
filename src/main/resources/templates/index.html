@@ -1,4 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html>
 <head>
 <style>
 body {background-color: ghostwhite;}
@@ -81,59 +82,12 @@ a:hover, a:active {
   background-color: steelblue;
 }
 </style>
-<link th:href="@{/static/style.css}" rel="stylesheet" />
-<meta charset="UTF-8">
-<title>View All Pets</title>
-
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 </head>
-
-
 <body>
-<div class="container mt-5">
-<h1 align="center">Search Pets</h1>
-  <form th:action="@{/searchPets}">
-  	Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
-  	&nbsp;
-  	<input type="submit" value="Search" />
-  	&nbsp;
-  	<input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-  </form>
-  <script type="text/javascript">
-  	function clearSearch() {
-  		window.location = "[[@{/searchPets}]]";
-  	}
-  </script>
-   
-  <table class="table table-bordered table-sm mt-2" id="pets">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Pet Name</th>
-        <th>Species</th>
-        <th>Age</th>
-        <th>Weight</th>
-        <th>Color</th>
-      
-      </tr>
-    </thead>
-    <tbody>
-      
-			<tr th:each="currentPet : ${pets}">
-				<td th:text="${currentPet.id}" />
-				<td th:text="${currentPet.name}" />
-				<td th:text="${currentPet.species}" />
-				<td th:text="${currentPet.age}" />
-				<td th:text="${currentPet.weight}" />
-				<td th:text="${currentPet.color}" />
-        <td>
-        <td><a th:href="@{/edit/{id}(id=${currentPet.id})}">Edit</a></td>
-		<td><a th:href="@{/delete/{id}(id=${currentPet.id})}">Delete</a></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<a href="/viewAll">View All Pets</a>
-<a href="/inputPet">Add a Pet</a>
+<p>Index page</p>
+<a href="/viewAll">View all Pets</a>
+<a href="/viewAllOwners">View all Owners</a>
 </body>
-
 </html>
