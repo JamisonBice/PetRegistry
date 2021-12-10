@@ -1,5 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
+<link th:href="@{/static/style.css}" rel="stylesheet" />
+<meta charset="UTF-8">
+<title>View All Pets</title>
 <style>
 body {background-color: ghostwhite;}
 h1   {color: steelblue;
@@ -81,10 +85,6 @@ a:hover, a:active {
   background-color: steelblue;
 }
 </style>
-<link th:href="@{/static/style.css}" rel="stylesheet" />
-<meta charset="UTF-8">
-<title>View All Pets</title>
-
 </head>
 
 
@@ -134,6 +134,7 @@ a:hover, a:active {
 </div>
 <a href="/viewAll">View All Pets</a>
 <a href="/inputPet">Add a Pet</a>
+
 </body>
 
 </html>

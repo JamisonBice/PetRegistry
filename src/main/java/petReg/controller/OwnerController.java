@@ -1,6 +1,6 @@
 package petReg.controller;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
@@ -32,9 +32,6 @@ public class OwnerController {
 	@Autowired
 	OwnerRepository repo;
 
-	@Autowired
-	private OwnerService service;
-
 	@GetMapping({ "-", "viewAllOwners" })
 	public String viewAllOwners(Model model) {
 		if (repo.findAll().isEmpty()) {
@@ -58,7 +55,7 @@ public class OwnerController {
 	}
 
 	@GetMapping("/ownerEdit/{id}")
-	public String showUpdateOwner(@PathVariable("id") long id, Model model) {
+	public String showUpdateOwner(@PathVariable("id") int id, Model model) {
 		Owner c = repo.findById(id).orElse(null);
 		model.addAttribute("newOwner", c);
 		return "ownerInput";
@@ -71,21 +68,21 @@ public class OwnerController {
 	}
 
 	@GetMapping("/ownerDelete/{id}")
-	public String deleteUser(@PathVariable("id") long id, Model model) {
+	public String deleteUser(@PathVariable("id") int id, Model model) {
 		Owner c = repo.findById(id).orElse(null);
 		repo.delete(c);
 		return viewAllOwners(model);
 	}
-
-	@RequestMapping(path = { "-", "/searchOwner" })
-	public String home(Owner owner, Model model, String keyword) {
-		if (keyword != null) {
-			List<Owner> list = service.getByKeyword(keyword);
-			model.addAttribute("newOwner", list);
-		} else {
-			List<Owner> list = service.getAllOwners();
-			model.addAttribute("newOwner", list);
-		}
-		return "ownerResults";
-	}
+	@Autowired
+	 private OwnerService service;
+	 @RequestMapping(path = {"-","/ownerSearch"})
+	 public String home(Owner shop, Model model, String keyword) {
+	  if(keyword!=null) {
+	   List<Owner> list = service.getByKeyword(keyword);
+	   model.addAttribute("list", list);
+	  }else {
+	  List<Owner> list = service.getAllOwners();
+	  model.addAttribute("list", list);}
+	  return "searchOwner";
+	 }
 }

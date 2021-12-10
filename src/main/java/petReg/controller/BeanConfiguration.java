@@ -14,6 +14,9 @@ import petReg.beans.Pet;
  * CIS175 - Fall 2021
  * Nov 17, 2021
  */
+
+//Bean COnfiguration for Pet and Owner 
+
 @Configuration
 public class BeanConfiguration {
 	@Bean
