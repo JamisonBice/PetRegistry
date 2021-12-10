@@ -56,14 +56,13 @@ a:hover, a:active {
 </head>
 <body>
 
-           
+<h1>Input New Pet</h1>
  <form th:object="${newPet}"th:action="@{/update/{id}(id=${newPet.id})}" method=POST  onsubmit="return formValidation(this);">
-		Name: <input name="name" size="20" th:field="*{name}"><br />
-		Species: <input name="species" size="10"th:field="*{species}"><br /> 
-		Age: <input name="age" size="4"th:field="*{age}"><br /> 
-		Weight: <input name="weight" size="10"th:field="*{weight}"><br /> 
-		Color: <input name="color" size="10"th:field="*{color}"><br /> 
-		<!--Figuring out how to add owner -->
+		<p>Name:</p> <input name="name" size="20" th:field="*{name}"><br />
+		<p>Species:</p> <input name="species" size="10"th:field="*{species}"><br /> 
+		<p>Age:</p> <input name="age" size="4"th:field="*{age}"><br /> 
+		<p>Weight:</p> <input name="weight" size="10"th:field="*{weight}"><br /> 
+		<p>Color:</p> <input name="color" size="10"th:field="*{color}"><br /> 
 		<input name="submit" type="submit" value="submit" />
 	</form>
 	<a href="/viewAll">View all Pets</a>
@@ -73,7 +72,7 @@ a:hover, a:active {
 <!--input validation to make sure that there are no blank fields or any invalid characters--> 
 
 
-<form method="get" onsubmit="return formValidation(this);">
+<!--<form method="get" onsubmit="return formValidation(this);">
 Pet: <input type ="text" name = "Pet">
 Owner: <input type = "text" name = "Owner">
 <input type = "submit" value="Add Pet">
@@ -86,7 +85,7 @@ Owner: <input type = "text" name = "Owner">
     <input type="submit" value="Search" />
     &nbsp;
     <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-</form>
+</form> -->
 
 <script type="text/javascript">
     function clearSearch() {
