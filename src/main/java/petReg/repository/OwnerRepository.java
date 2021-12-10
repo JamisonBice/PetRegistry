@@ -22,7 +22,10 @@ import petReg.beans.Owner;
 
 @Repository
 public interface OwnerRepository extends JpaRepository<Owner, Integer>{
- //Custom query
+ //Custom query which search the name, houseNum, and age for the 'Keyword'
  @Query(value = "select * from owner o where o.name like %:keyword% or o.house_num like %:keyword% or o.age like %:keyword%" , nativeQuery = true)
  List<Owner> findByKeyword(@Param("keyword") String keyword);
+ 
+ 
+
 }

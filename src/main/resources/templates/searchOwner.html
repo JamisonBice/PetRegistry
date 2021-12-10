@@ -3,140 +3,166 @@
 <head>
 <meta charset="UTF-8">
 
-<style>
-body {background-color: ghostwhite;}
-h1   {color: steelblue;
-  font-family: verdana;
-  font-size: 250%;}
-<!-- table,th,td {color: yellowgreen;
-  font-family: courier;
-  font-size: 130%;
-  border: 1px yellowgreen;
-  margin: 1px 1px 1px 1px;} -->
+<style type="text/css">
+body {
+	background-color: ghostwhite;
+}
+
+h1 {
+	color: steelblue;
+	font-family: verdana;
+	font-size: 250%;
+}
+
+<!--
+table, th, td {
+	color: yellowgreen;
+	font-family: courier;
+	font-size: 130%;
+	border: 1px yellowgreen;
+	margin: 1px 1px 1px 1px;
+}
+
+-->
 #owners {
-  font-size: 130%;
-  font-family: courier;
-  border-collapse: collapse;
-  width: 50%;
+	font-size: 130%;
+	font-family: courier;
+	border-collapse: collapse;
+	width: 50%;
 }
 
 #owners td, #owners th {
-  border: 1px solid #ddd;
-  padding: 8px;
-  font-family: courier-bold;
-  font-size: 130%;
+	border: 1px solid #ddd;
+	padding: 8px;
+	font-family: courier-bold;
+	font-size: 130%;
 }
 
-#owners tr:nth-child(even){background-color: #f2f2f2;}
+#owners tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
 
-#owners tr:hover {background-color: #ddd;}
+#owners tr:hover {
+	background-color: #ddd;
+}
 
 #owners th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #04AA6D;
+	color: white;
 }
-p {color: yellowgreen;
-  font-family: courier;
-  font-size: 160%;
-  margin: 1px 1px 1px 1px;}
+
+p {
+	color: yellowgreen;
+	font-family: courier;
+	font-size: 160%;
+	margin: 1px 1px 1px 1px;
+}
+
 input[type=submit], button {
-  background-color: lightgreen; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+	background-color: lightgreen; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
 }
+
 input[type=text] {
-  width: 130px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
-  background-image: url('searchicon.png');
-  background-position: 10px 10px; 
-  background-repeat: no-repeat;
-  padding: 12px 20px 12px 20px;
-  transition: width 0.4s ease-in-out;
+	width: 130px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-image: url('searchicon.png');
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 20px;
+	transition: width 0.4s ease-in-out;
 }
 
 input[type=text]:focus {
-  width: 30%;
+	width: 30%;
 }
-input[type=submit]:hover , button:hover{
-  background-color: green; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+
+input[type=submit]:hover, button:hover {
+	background-color: green; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
 }
 
 a:link, a:visited {
-  background-color: skyblue;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+	background-color: skyblue;
+	color: white;
+	padding: 14px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
 }
 
 a:hover, a:active {
-  background-color: steelblue;
+	background-color: steelblue;
 }
 </style>
 <title>SEARCH</title>
 </head>
 <body>
-<div class="container mt-5">
-<h1 align="center">Search Owners</h1>
-  <form th:action="@{/ownerSearch}" method="get">
-  <input type="text" name="keyword" th:value="${keyword}"  placeholder="Search        Owner Name & HouseNum & Age" size="50" >
-  <button type="submit" class="btn btn-info" >Search</button>
-  <button type="submit" class="btn btn-info" >Reset</button>
-  </form>
-  <table class="table table-bordered table-sm mt-2" id="owners">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Owner Name</th>
-        <th>House Number</th>
-        <th>Age</th>
-      
-      </tr>
-    </thead>
-    <tbody>
-      <tr th:each="l : ${list}" th:field="${l}">
-        <td th:text="${lStat.index+1}"></td>
-        <td th:text="${l.name}"></td>
-        <td th:text="${l.houseNum}"></td>
-        <td th:text="${l.age}"></td>
-        
-        <td>
-       
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<a href="../inputOwner">Add a new Owner</a>
-<a href="/viewAllOwners">View all Owners</a>
-<a href="/inputPet">Add an Pet</a>
+	<!-- Search Bar -->
+	<div class="container mt-5">
+		<h1 align="center">Search Owners</h1>
+		<form th:action="@{/ownerSearch}" method="get" action="">
+			<input type="text" name="keyword" th:value="${keyword}"
+				placeholder="Search        Owner Name &amp; HouseNum &amp; Age"
+				size="50">
+			<button type="submit" class="btn btn-info" onclick="myFunction()">Search</button>
+			<button type="submit" class="btn btn-info">Reset</button>
+		</form>
+		<!-- Displays Search -->
+
+		<table class="table table-bordered table-sm mt-2" id="owners">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Owner Name</th>
+					<th>House Number</th>
+					<th>Age</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="l : ${list}" th:field="${l}">
+					<td th:text="${lStat.index+1}"></td>
+					<td th:text="${l.name}"></td>
+					<td th:text="${l.houseNum}"></td>
+					<td th:text="${l.age}"></td>
+
+					<td></td>
+				</tr>
+			</tbody>
+		</table>		
+	</div>
+			<!-- Links -->
+	<a href="../inputOwner">Add a new Owner</a>
+	<a href="/viewAllOwners">View all Owners</a>
+	<a href="/inputPet">Add an Pet</a>
 </body>
+
 </html>

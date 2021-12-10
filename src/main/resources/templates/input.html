@@ -1,139 +1,141 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<style>
-body {background-color: ghostwhite;}
-h1   {color: steelblue;
-  font-family: verdana;
-  font-size: 250%;}
-p    {color: yellowgreen;
-  font-family: courier-bold;
-  font-size: 160%;
-  margin: 1px 1px 1px 1px;}
-input[type=submit]{
-  background-color: lightgreen; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+<style type="text/css">
+body {
+	background-color: ghostwhite;
 }
-input[type=submit]:hover{
-  background-color: green; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+
+h1 {
+	color: steelblue;
+	font-family: verdana;
+	font-size: 250%;
+}
+
+p {
+	color: yellowgreen;
+	font-family: courier-bold;
+	font-size: 160%;
+	margin: 1px 1px 1px 1px;
+}
+
+input[type=submit] {
+	background-color: lightgreen; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+input[type=submit]:hover {
+	background-color: green; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
 }
 
 a:link, a:visited {
-  background-color: skyblue;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+	background-color: skyblue;
+	color: white;
+	padding: 14px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
 }
 
 a:hover, a:active {
-  background-color: steelblue;
+	background-color: steelblue;
 }
 </style>
 <meta charset="UTF-8">
 <title>Insert New Pet</title>
 </head>
 <body>
-
-<h1>Input New Pet</h1>
- <form th:object="${newPet}"th:action="@{/update/{id}(id=${newPet.id})}" method=POST  onsubmit="return formValidation(this);">
-		<p>Name:</p> <input name="name" size="20" th:field="*{name}"><br />
-		<p>Species:</p> <input name="species" size="10"th:field="*{species}"><br /> 
-		<p>Age:</p> <input name="age" size="4"th:field="*{age}"><br /> 
-		<p>Weight:</p> <input name="weight" size="10"th:field="*{weight}"><br /> 
-		<p>Color:</p> <input name="color" size="10"th:field="*{color}"><br /> 
-		<input name="submit" type="submit" value="submit" />
+	<!-- Form to get input  -->
+	<h1>Input New Pet</h1>
+	<form th:object="${newPet}"
+		th:action="@{/update/{id}(id=${newPet.id})}" method="POST"
+		onsubmit="return formValidation(this);" action="">
+		<p>Name:</p>
+		<input name="name" size="20" th:field="*{name}"><br />
+		<p>Species:</p>
+		<input name="species" size="10" th:field="*{species}"><br />
+		<p>Age:</p>
+		<input name="age" size="4" th:field="*{age}"><br />
+		<p>Weight:</p>
+		<input name="weight" size="10" th:field="*{weight}"><br />
+		<p>Color:</p>
+		<input name="color" size="10" th:field="*{color}"><br /> <input
+			name="submit" type="submit" value="submit" />
 	</form>
+				<!-- Links -->
 	<a href="/viewAll">View all Pets</a>
 	<a href="/inputOwner">Add an Owner</a>
 
+	<!--input validation to make sure that there are no blank fields or any invalid characters-->
 
-<!--input validation to make sure that there are no blank fields or any invalid characters--> 
+	<script type="text/javascript">
+		function clearSearch() {
+			window.location = "[[@{/}]]";
+		}
+	</script>
 
-
-<!--<form method="get" onsubmit="return formValidation(this);">
-Pet: <input type ="text" name = "Pet">
-Owner: <input type = "text" name = "Owner">
-<input type = "submit" value="Add Pet">
-</form>
-
-<!--  <form th:action="@{/}">
-    Search By House Number: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
-    &nbsp;
-    <input type="submit" value="Search" />
-    &nbsp;
-    <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-
-</form> -->
-
-
-<script type="text/javascript">
-    function clearSearch() {
-        window.location = "[[@{/}]]";
-    }
-</script>
-
-<script>
-function formValidation(form){
-	if (form.name.value == "" || form.species.value == "" || form.age.value == "" || form.weight.value == "" || form.color.value == ""){
-		alert("Attention: Fields Cannot Be Empty!");
-		form.name.focus();
-		form.species.focus();
-		form.age.focus();
-		form.weight.focus();
-		form.color.focus();
-		return false;
-	}
-	var re = /^[\w ]+$/;
-	if (!re.test(form.name.value)) {
-		alert("Attention: Fields Cannot Contain Invalid Characters!");
-		form.name.focus();
-		return false;
-	}
-	if (!re.test(form.species.value)) {
-		alert("Attention: Fields Cannot Contain Invalid Characters!");
-		form.species.focus();
-		return false;
-	} 
-	if (!re.test(form.age.value)) {
-		alert("Attention: Fields Cannot Contain Invalid Characters!");
-		form.age.focus();
-		return false;
-	} 
-	if (!re.test(form.weight.value)) {
-		alert("Attention: Fields Cannot Contain Invalid Characters!");
-		form.weight.focus();
-		return false;
-	} 
-	if (!re.test(form.color.value)) {
-		alert("Attention: Fields Cannot Contain Invalid Characters!");
-		form.color.focus();
-		return false;
-	} 
-return true;
-}
-</script>
+	<script type="text/javascript">
+		function formValidation(form) {
+			if (form.name.value == "" || form.species.value == ""
+					|| form.age.value == "" || form.weight.value == ""
+					|| form.color.value == "") {
+				alert("Attention: Fields Cannot Be Empty!");
+				form.name.focus();
+				form.species.focus();
+				form.age.focus();
+				form.weight.focus();
+				form.color.focus();
+				return false;
+			}
+			var re = /^[\w ]+$/;
+			if (!re.test(form.name.value)) {
+				alert("Attention: Fields Cannot Contain Invalid Characters!");
+				form.name.focus();
+				return false;
+			}
+			if (!re.test(form.species.value)) {
+				alert("Attention: Fields Cannot Contain Invalid Characters!");
+				form.species.focus();
+				return false;
+			}
+			if (!re.test(form.age.value)) {
+				alert("Attention: Fields Cannot Contain Invalid Characters!");
+				form.age.focus();
+				return false;
+			}
+			if (!re.test(form.weight.value)) {
+				alert("Attention: Fields Cannot Contain Invalid Characters!");
+				form.weight.focus();
+				return false;
+			}
+			if (!re.test(form.color.value)) {
+				alert("Attention: Fields Cannot Contain Invalid Characters!");
+				form.color.focus();
+				return false;
+			}
+			return true;
+		}
+	</script>
 
 </body>
 </html>

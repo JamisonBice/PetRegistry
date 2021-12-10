@@ -13,25 +13,32 @@ import petReg.repository.PetRepository;
 @Service
 @Transactional
 public class PetService {
-	
+
 	@Autowired
 	private PetRepository repo;
-	
-	public List<Pet> listAll(String keyword) {
-		if (keyword != null) {
-			return repo.search(keyword);
-		}
-		return repo.findAll();
+
+	// Gets all the Pet Objects/List
+	public List<Pet> getAllPets() {
+		List<Pet> list = (List<Pet>) repo.findAll();
+		return list;
 	}
-	
+
+	// Uses the keyword to find an element in the database
+	public List<Pet> getByKeyword(String keyword) {
+		return repo.findByKeyword(keyword);
+	}
+
+	// Saves pet
 	public void save(Pet pet) {
 		repo.save(pet);
 	}
-	
+
+	// Finds by ID
 	public Pet get(long id) {
 		return repo.findById(id).get();
 	}
-	
+
+	// Deletes By ID
 	public void delete(long id) {
 		repo.deleteById(id);
 	}
