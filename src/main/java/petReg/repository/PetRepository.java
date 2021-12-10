@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import petReg.beans.Pet;
 
 public interface PetRepository extends JpaRepository<Pet, Long> {
-	
-	@Query("SELECT p FROM Pet p WHERE CONCAT(p.name, ' ', p.species, ' ', p.weight, ' ', p.color, ' ', p.age) LIKE %?1%")
-	public List<Pet> search(String keyword); 
+	// Custom query which searches the name, species, weight, color, and age for the
+	// 'Keyword'
+	@Query(value = "select * from pet p where p.name like %:keyword% or p.species like %:keyword% or p.age like %:keyword% or p.weight like %:keyword% or p.color like %:keyword% ", nativeQuery = true)
+	List<Pet> findByKeyword(@Param("keyword") String keyword);
 }
-

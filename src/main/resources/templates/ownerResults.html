@@ -1,133 +1,137 @@
- <html xmlns:th="http://www.thymeleaf.org">
+
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<style>
-body {background-color: ghostwhite;}
-h1   {color: steelblue;
-  font-family: verdana;
-  font-size: 250%;}
-<!-- table,th,td {color: yellowgreen;
-  font-family: courier;
-  font-size: 130%;
-  border: 1px yellowgreen;
-  margin: 1px 1px 1px 1px;} -->
+<style type="text/css">
+body {
+	background-color: ghostwhite;
+}
+
+h1 {
+	color: steelblue;
+	font-family: verdana;
+	font-size: 250%;
+}
+
+<!--
+table, th, td {
+	color: yellowgreen;
+	font-family: courier;
+	font-size: 130%;
+	border: 1px yellowgreen;
+	margin: 1px 1px 1px 1px;
+}
+
+-->
 #owners {
-  font-size: 130%;
-  font-family: courier;
-  border-collapse: collapse;
-  width: 50%;
+	font-size: 130%;
+	font-family: courier;
+	border-collapse: collapse;
+	width: 50%;
 }
 
 #owners td, #owners th {
-  border: 1px solid #ddd;
-  padding: 8px;
-  font-family: courier-bold;
-  font-size: 130%;
+	border: 1px solid #ddd;
+	padding: 8px;
+	font-family: courier-bold;
+	font-size: 130%;
 }
 
-#owners tr:nth-child(even){background-color: #f2f2f2;}
+#owners tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
 
-#owners tr:hover {background-color: #ddd;}
+#owners tr:hover {
+	background-color: #ddd;
+}
 
 #owners th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #04AA6D;
+	color: white;
 }
-p {color: yellowgreen;
-  font-family: courier;
-  font-size: 160%;
-  margin: 1px 1px 1px 1px;}
-input[type=submit]{
-  background-color: lightgreen; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+
+p {
+	color: yellowgreen;
+	font-family: courier;
+	font-size: 160%;
+	margin: 1px 1px 1px 1px;
 }
-input[type=submit]:hover{
-  background-color: green; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+
+input[type=submit] {
+	background-color: lightgreen; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+input[type=submit]:hover {
+	background-color: green; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
 }
 
 a:link, a:visited {
-  background-color: skyblue;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+	background-color: skyblue;
+	color: white;
+	padding: 14px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
 }
 
 a:hover, a:active {
-  background-color: steelblue;
+	background-color: steelblue;
 }
 </style>
 <meta charset="UTF-8">
 <title>View All Owners</title>
 </head>
 <body>
-<h1 align="center">All Owners</h1>
-
-  <table class="table table-bordered table-sm mt-2" id="owners">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Owner Name</th>
-        <th>House Number</th>
-        <th>Owner Age</th>
-      
-      </tr>
-    </thead>
-    <tbody>
-      
-			<tr th:each="currentOwner : ${owners}">
-				<td th:text="${currentOwner.id}" />
-				<td th:text="${currentOwner.name}" />
-				<td th:text="${currentOwner.houseNum}" />
-				<td th:text="${currentOwner.age}" />
-        <td>
-        <td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
-		<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
-      </tr>
-    </tbody>
-  </table>
-
-        <!--  
-		<form>
-		<table>
-			<tr th:each="currentOwner : ${owners}">
-				<td th:text="${currentOwner.id}" />
-				<td th:text="${currentOwner.name}" />
-				<td th:text="${currentOwner.houseNum}" />
-				<td th:text="${currentOwner.age}" />
-	  <td><a th:href="@{/search/{id}(id=${currentPet.id})}">Search</a></td>  
-				<td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
-				<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
+	<h1 align="center">All Owners</h1>
+<!-- Displays Database in a table  -->
+	<table class="table table-bordered table-sm mt-2" id="owners">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Owner Name</th>
+				<th>House Number</th>
+				<th>Owner Age</th>
 
 			</tr>
-		</table>
+		</thead>
+		<tbody>
 
+			<tr th:each="currentOwner : ${owners}">
+				<td th:text="${currentOwner.id}" />
+				<td th:text="${currentOwner.name}" />
+				<td th:text="${currentOwner.houseNum}" />
+				<td th:text="${currentOwner.age}" />
+				<td></td>
+				<td><a th:href="@{/ownerEdit/{id}(id=${currentOwner.id})}">Edit</a></td>
+				<td><a th:href="@{/ownerDelete/{id}(id=${currentOwner.id})}">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
 
-	</form>  -->
 	<a href="../inputOwner">Add a new Owner</a>
 	<a href="/ownerSearch">Search Owners</a>
 

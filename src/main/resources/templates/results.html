@@ -4,120 +4,127 @@
 <link th:href="@{/static/style.css}" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>View All Pets</title>
-<style>
-body {background-color: ghostwhite;}
-h1   {color: steelblue;
-  font-family: verdana;
-  font-size: 250%;}
-<!-- table,th,td {color: yellowgreen;
-  font-family: courier;
-  font-size: 130%;
-  border: 1px yellowgreen;
-  margin: 1px 1px 1px 1px;} -->
+<style type="text/css">
+body {
+	background-color: ghostwhite;
+}
+
+h1 {
+	color: steelblue;
+	font-family: verdana;
+	font-size: 250%;
+}
+
+<!--
+table, th, td {
+	color: yellowgreen;
+	font-family: courier;
+	font-size: 130%;
+	border: 1px yellowgreen;
+	margin: 1px 1px 1px 1px;
+}
+
+-->
 #pets {
-  font-size: 130%;
-  font-family: courier;
-  border-collapse: collapse;
-  width: 50%;
+	font-size: 130%;
+	font-family: courier;
+	border-collapse: collapse;
+	width: 50%;
 }
 
 #pets td, #pets th {
-  border: 1px solid #ddd;
-  padding: 8px;
-  font-family: courier-bold;
-  font-size: 130%;
+	border: 1px solid #ddd;
+	padding: 8px;
+	font-family: courier-bold;
+	font-size: 130%;
 }
 
-#pets tr:nth-child(even){background-color: #f2f2f2;}
+#pets tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
 
-#pets tr:hover {background-color: #ddd;}
+#pets tr:hover {
+	background-color: #ddd;
+}
 
 #pets th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #04AA6D;
+	color: white;
 }
-p {color: yellowgreen;
-  font-family: courier;
-  font-size: 160%;
-  margin: 1px 1px 1px 1px;}
-input[type=submit]{
-  background-color: lightgreen; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+
+p {
+	color: yellowgreen;
+	font-family: courier;
+	font-size: 160%;
+	margin: 1px 1px 1px 1px;
 }
-input[type=submit]:hover{
-  background-color: green; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+
+input[type=submit] {
+	background-color: lightgreen; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+input[type=submit]:hover {
+	background-color: green; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
 }
 
 a:link, a:visited {
-  background-color: skyblue;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+	background-color: skyblue;
+	color: white;
+	padding: 14px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
 }
 
 a:hover, a:active {
-  background-color: steelblue;
+	background-color: steelblue;
 }
 </style>
 </head>
 
 
 <body>
-<div class="container mt-5">
-<h1 align="center">Search Pets</h1>
-  <form th:action="@{/searchPets}">
-  	Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
-  	&nbsp;
-  	<input type="submit" value="Search" />
-  	&nbsp;
-  	<input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-  </form>
-  <script type="text/javascript">
-  	function clearSearch() {
-  		window.location = "[[@{/searchPets}]]";
-  	}
-  </script>
-   
-  <table class="table table-bordered table-sm mt-2" id="pets">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Pet Name</th>
-        <th>Species</th>
-        <th>Age</th>
-        <th>Weight</th>
-        <th>Color</th>
-      
-      </tr>
-    </thead>
-    <tbody>
-      
+
+	<!-- Table of Database -->
+	<table class="table table-bordered table-sm mt-2" id="pets">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Pet Name</th>
+				<th>Species</th>
+				<th>Age</th>
+				<th>Weight</th>
+				<th>Color</th>
+
+			</tr>
+		</thead>
+		<tbody>
+
 			<tr th:each="currentPet : ${pets}">
 				<td th:text="${currentPet.id}" />
 				<td th:text="${currentPet.name}" />
@@ -125,16 +132,15 @@ a:hover, a:active {
 				<td th:text="${currentPet.age}" />
 				<td th:text="${currentPet.weight}" />
 				<td th:text="${currentPet.color}" />
-        <td>
-        <td><a th:href="@{/edit/{id}(id=${currentPet.id})}">Edit</a></td>
-		<td><a th:href="@{/delete/{id}(id=${currentPet.id})}">Delete</a></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<a href="/viewAll">View All Pets</a>
-<a href="/inputPet">Add a Pet</a>
-
+				<td></td>
+				<td><a th:href="@{/edit/{id}(id=${currentPet.id})}">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${currentPet.id})}">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="/inputOwner">Add a Owner</a>
+	<a href="/inputPet">Add a Pet</a>
+	<a href="/searchPets">Search</a>
 </body>
 
 </html>

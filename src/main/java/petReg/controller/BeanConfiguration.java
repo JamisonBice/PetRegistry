@@ -2,21 +2,16 @@ package petReg.controller;
 
 import org.springframework.context.annotation.Bean;
 
-
 import org.springframework.context.annotation.Configuration;
 
 import petReg.beans.Owner;
 import petReg.beans.Pet;
 
-
 /**
- * @author Jamison Bice - jdbice
- * CIS175 - Fall 2021
- * Nov 17, 2021
+ * @author Jamison Bice - jdbice CIS175 - Fall 2021 Nov 17, 2021
  */
 
-//Bean COnfiguration for Pet and Owner 
-
+//Configs the beans
 @Configuration
 public class BeanConfiguration {
 	@Bean
@@ -25,12 +20,12 @@ public class BeanConfiguration {
 		return bean;
 
 	}
+
 	@Bean
 	public Owner owner() {
-		Owner bean = new Owner("Bob", 1010, 96);
-		
+		Owner bean = new Owner();
+
 		return bean;
 
 	}
 }
-

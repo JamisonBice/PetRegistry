@@ -1,91 +1,170 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<style>
-body {background-color: ghostwhite;}
-h1   {color: steelblue;
-  font-family: verdana;
-  font-size: 250%;}
-p    {color: yellowgreen;
-  font-family: courier-bold;
-  font-size: 160%;
-  margin: 1px 1px 1px 1px;}
-input[type=submit]{
-  background-color: lightgreen; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+<style type="text/css">
+body {
+	background-color: ghostwhite;
 }
-input[type=submit]:hover{
-  background-color: green; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
+
+h1 {
+	color: steelblue;
+	font-family: verdana;
+	font-size: 250%;
+}
+
+<!--
+table, th, td {
+	color: yellowgreen;
+	font-family: courier;
+	font-size: 130%;
+	border: 1px yellowgreen;
+	margin: 1px 1px 1px 1px;
+}
+
+-->
+#pets {
+	font-size: 130%;
+	font-family: courier;
+	border-collapse: collapse;
+	width: 50%;
+}
+
+#pets td, #pets th {
+	border: 1px solid #ddd;
+	padding: 8px;
+	font-family: courier-bold;
+	font-size: 130%;
+}
+
+#pets tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#pets tr:hover {
+	background-color: #ddd;
+}
+
+#pets th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #04AA6D;
+	color: white;
+}
+
+p {
+	color: yellowgreen;
+	font-family: courier;
+	font-size: 160%;
+	margin: 1px 1px 1px 1px;
+}
+
+input[type=submit], button {
+	background-color: lightgreen; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+input[type=text] {
+	width: 130px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-image: url('searchicon.png');
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 20px;
+	transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+	width: 30%;
+}
+
+input[type=submit]:hover, button:hover {
+	background-color: green; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
 }
 
 a:link, a:visited {
-  background-color: skyblue;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+	background-color: skyblue;
+	color: white;
+	padding: 14px 25px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
 }
 
 a:hover, a:active {
-  background-color: steelblue;
+	background-color: steelblue;
 }
 </style>
+
 <meta charset="UTF-8">
 <title>Search By</title>
 </head>
 <body>
-<div align="center">
-    <h1>Product List</h1>
-    <a href="/viewAll">Go Back</a>
-    <br/><br/>
-    <table border="1" cellpadding="10">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Species</th>
-                <th>Age</th>
-                <th>Weight</th>
-                <th>Color</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="currentPet : ${pets}">
-                <td th:text="${currentPet.id}">Product ID</td>
-                <td th:text="${currentPet.name}">Name</td>
-                <td th:text="${currentPet.species}">Species</td>
-                <td th:text="${currentPet.age}">Age</td>
-                <td th:text="${currentPet.weight}">Weight</td>
-                <td th:text="${currentPet.color}">Color</td>
-                <td>
-                    <a th:href="/@{'/edit/' + $currentPet.id}}">Edit</a>
-                    &nbsp;&nbsp;&nbsp;
-                    <a th:href="/@{'/delete/' + ${currentPet.id}}">Delete</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>   
+	<!-- Search Bar -->
+	<div class="container mt-5">
+		<h1 align="center">Search Pets</h1>
+		<form th:action="@{/searchPets}" method="get" action="">
+			<input type="text" name="keyword" th:value="${keyword}"
+				placeholder="Search        Pet Name &amp; Species &amp; Age &amp; Weight &amp; Color"
+				size="50">
+			<button type="submit" class="btn btn-info">Search</button>
+			<button type="submit" class="btn btn-info">Reset</button>
+		</form>
+		<!-- Displays Search -->
+
+		<table class="table table-bordered table-sm mt-2" id="pets">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Species</th>
+					<th>Age</th>
+					<th>Weight</th>
+					<th>Color</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Displays Search -->
+			</tbody>
+			<tbody>
+				<tr th:each="l : ${list}" th:field="${l}">
+					<td th:text="${lStat.index+1}"></td>
+					<td th:text="${l.name}"></td>
+					<td th:text="${l.species}"></td>
+					<td th:text="${l.age}"></td>
+					<td th:text="${l.weight}"></td>
+					<td th:text="${l.color}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<a href="/viewAll">Go Back</a>
+	<br />
+	<br />
 </body>
 </html>
