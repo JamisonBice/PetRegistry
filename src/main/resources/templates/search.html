@@ -55,17 +55,37 @@ a:hover, a:active {
 <title>Search By</title>
 </head>
 <body>
-<form th:action="viewAll" method="get">
-		<input type="radio" id="age" name="searchby" value="age">
-		<label for="age">Age</label><br />
-		<input type="radio" id="species" name="searchby" value="species">
-		<label for="species">Species</label><br />
-		<input type="radio" id="animalname" name="searchby" value="name">
-		<label for="animalname">Pet Name</label><br />
-		<input type="search" name="search">
-		<input name="submit" type="submit" value="Search" />
-	</form>
-	<a href="/viewAll">View all Pets</a>
-	<a href="/inputOwner">Add an Owner</a>
+<div align="center">
+    <h1>Product List</h1>
+    <a href="/viewAll">Go Back</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Species</th>
+                <th>Age</th>
+                <th>Weight</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="currentPet : ${pets}">
+                <td th:text="${currentPet.id}">Product ID</td>
+                <td th:text="${currentPet.name}">Name</td>
+                <td th:text="${currentPet.species}">Species</td>
+                <td th:text="${currentPet.age}">Age</td>
+                <td th:text="${currentPet.weight}">Weight</td>
+                <td th:text="${currentPet.color}">Color</td>
+                <td>
+                    <a th:href="/@{'/edit/' + $currentPet.id}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="/@{'/delete/' + ${currentPet.id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>   
 </body>
 </html>
